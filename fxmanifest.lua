@@ -8,8 +8,11 @@ author 'Bytesizd'
 description 'A script with various bug fixes for vehicles.'
 
 client_script {
-    'client/boats.lua',
     'client/wagons.lua'
+}
+
+server_script {
+    'client/boats.lua'
 }
 
 shared_script {
