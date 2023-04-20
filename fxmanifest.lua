@@ -12,7 +12,7 @@ client_script {
 }
 
 server_script {
-    'client/boats.lua'
+    'server/boats.lua'
 }
 
 shared_script {
