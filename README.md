@@ -17,4 +17,4 @@
 - The original boats fix implementation credit to Apollyon and KTOS on the Cfx Discord.
 
 ## Need More Support?
-- [BCC Disord](https://discord.gg/cQMJaTqcqJ)
+- [BCC Discord](https://discord.gg/cQMJaTqcqJ)
