@@ -5,8 +5,12 @@
 - Removes stuck wagons
 - Prevents the spawning of NPC boats
 
+## Dependencies
+- [bcc-utils](https://github.com/BryceCanyonCounty/bcc-utils)
+
 ## How to install
 * Download this repo
+* Make sure dependencies are installed/updated and ensured before this script
 * Copy and paste `bcc-vehiclefixes` folder to `resources/bcc-vehiclefixes`
 * Add `ensure bcc-vehiclefixes` to your `server.cfg` file
 * Now you are ready to get coding!
