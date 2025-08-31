@@ -1,6 +1,5 @@
 Config = {
 
-    -- Do Not Enable on Live Server
     DevMode = {
         active = false -- Shows Debug Prints in Client Console
     },
