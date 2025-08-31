@@ -1,2 +1,7 @@
+<1.1.0>
+- Removes padlocks when wagons are deleted
+- Add configuable wagon check time
+- Add Debug system to show client prints
+
 <1.0.1>
-See GitHub for details!
+- See GitHub for details!
