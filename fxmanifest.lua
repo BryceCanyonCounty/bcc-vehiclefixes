@@ -7,6 +7,11 @@ lua54 'yes'
 author 'Bytesizd'
 description 'A script with various bug fixes for vehicles.'
 
+shared_script {
+    'config.lua',
+    'debug_init.lua'
+}
+
 client_script {
     'client/wagons.lua'
 }
@@ -16,8 +21,4 @@ server_script {
     'server/boats.lua'
 }
 
-shared_script {
-    'config.lua'
-}
-
-version '1.0.1'
+version '1.1.0'
