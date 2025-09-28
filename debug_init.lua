@@ -1,4 +1,3 @@
--- bcc-vehiclefixes resource debug system (resource-scoped global)
 -- DO NOT MAKE CHANGES TO THIS FILE
 if not BCCVehicleFixesDebug then
     ---@class BCCVehicleFixesDebugLib
@@ -30,7 +29,4 @@ if not BCCVehicleFixesDebug then
     BCCVehicleFixesDebug.Error = createLogger("ERROR", 1)  -- Red
     BCCVehicleFixesDebug.Warning = createLogger("WARNING", 3) -- Yellow
     BCCVehicleFixesDebug.Success = createLogger("SUCCESS", 2) -- Green
-
-    -- Make it globally available
-    _G.BCCVehicleFixesDebug = BCCVehicleFixesDebug
 end

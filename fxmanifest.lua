@@ -5,7 +5,7 @@ game 'rdr3'
 lua54 'yes'
 
 author 'Bytesizd'
-description 'A script with various bug fixes for vehicles.'
+description 'Advanced vehicle fixes with comprehensive wagon component removal and configurable detection systems.'
 
 shared_script {
     'config.lua',
@@ -21,4 +21,4 @@ server_script {
     'server/boats.lua'
 }
 
-version '1.1.0'
+version '2.0.0'
