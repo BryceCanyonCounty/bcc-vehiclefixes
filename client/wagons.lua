@@ -249,7 +249,56 @@ local function ProcessStuckWagon(wagon)
     end
 end
 
--- MAIN THREAD
+---Remove orphaned wagon components that exist in the world without a parent wagon
+---@return number count Number of orphaned components removed
+local function RemoveOrphanedWagonComponents()
+    local orphansRemoved = 0
+    local objectPool = GetGamePool('CObject') or {}
+    local vehiclePool = GetGamePool('CVehicle') or {}
+
+    for _, obj in ipairs(objectPool) do
+        if DoesEntityExist(obj) and not IsEntityAMissionEntity(obj) then
+            local objModel = GetEntityModel(obj)
+
+            -- Check if this is a known wagon component
+            if IsKnownWagonComponent(objModel) then
+                local objPos = GetEntityCoords(obj)
+                local isAttachedToWagon = false
+
+                -- Check if it's attached to or near any existing wagon
+                for _, wagon in ipairs(vehiclePool) do
+                    if DoesEntityExist(wagon) and IsEntityAVehicle(wagon) then
+                        local wagonPos = GetEntityCoords(wagon)
+                        local distance = #(objPos - wagonPos)
+
+                        if IsEntityAttachedToEntity(obj, wagon) or distance <= (distances.knownComponent or 3.0) then
+                            isAttachedToWagon = true
+                            break
+                        end
+                    end
+                end
+
+                -- If not attached to any wagon, it's orphaned - remove it
+                if not isAttachedToWagon then
+                    if RequestAndDeleteEntity(obj, 'orphaned wagon component') then
+                        DBG.Success('Deleted orphaned wagon component (hash: ' .. objModel .. ')')
+                        orphansRemoved = orphansRemoved + 1
+                    else
+                        DBG.Warning('Failed to delete orphaned wagon component (hash: ' .. objModel .. ')')
+                    end
+                end
+            end
+        end
+    end
+
+    if orphansRemoved > 0 then
+        DBG.Info('Removed ' .. orphansRemoved .. ' orphaned wagon components')
+    end
+
+    return orphansRemoved
+end
+
+-- MAIN THREAD - Stuck wagon detection
 if Config.Wagons.active then
     CreateThread(function()
         local checkInterval = (Config.Wagons.checkInterval or 1) * 1000
@@ -266,6 +315,17 @@ if Config.Wagons.active then
             end
 
             Wait(checkInterval)
+        end
+    end)
+
+    -- ORPHAN CLEANUP THREAD - Remove wagon components that lost their parent wagon
+    CreateThread(function()
+        -- Run less frequently than stuck wagon check (every 5 seconds)
+        local orphanCheckInterval = 5000
+
+        while true do
+            Wait(orphanCheckInterval)
+            RemoveOrphanedWagonComponents()
         end
     end)
 end
