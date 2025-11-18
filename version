@@ -1,16 +1,2 @@
-<2.0.0>
-MAJOR REWRITE - Breaking Changes:
-- Config structure has changed - update your config.lua!
-- Complete wagon removal system overhaul
-- Enhanced padlock and component detection
-- Extended horse support
-- Fully configurable distances and component lists
-- Improved performance and reliability
-
-<1.1.0>
-- Removes padlocks when wagons are deleted
-- Add configuable wagon check time
-- Add Debug system to show client prints
-
-<1.0.1>
-- See GitHub for details!
+<2.0.1
+- Add search/deletion for orphaned wagon components
